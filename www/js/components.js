@@ -17,6 +17,9 @@ window.addEventListener('load', function() {
 
         this.elt.checked = checked;
         this.$emit('update:elt', this.elt);
+      },
+      deleteBtn: function() {
+        this.$emit('remove-item', this.elt);
       }
     }
   });
@@ -34,15 +37,25 @@ window.addEventListener('load', function() {
     },
     methods: {
       updateTitle: function(elt) {
-        this.$emit('update:title', elt.target.value);
+        this.$emit('update-title', elt.target.value);
       },
       saveNewItem: function() {
         var elt = document.getElementById('in_new_element');
 
+        this.$emit('add-item', elt);
         this.contents.push({
           value: elt.value
         });
         elt.value = '';
+      },
+      remove: function(elt) {
+        var index = this.contents.findIndex(function(item) {
+          return item.value === elt.value;
+        });
+
+        if (index >= 0) {
+          this.$emit('remove-item', index);
+        }
       }
     }
   });

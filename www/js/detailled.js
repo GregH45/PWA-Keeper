@@ -47,6 +47,12 @@ window.addEventListener('load', function() {
           that.title = result.title;
           that.contents = result.contents;
         });
+      },
+      remove: function(id) {
+        this.contents = this.contents.filter(function(elt, index) {
+          return id !== index;
+        });
+        //this.updateBtn();
       }
     }
   });
