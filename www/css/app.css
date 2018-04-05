@@ -18,6 +18,10 @@ body {
   padding: 2em;
 }
 
+.title {
+  font-size: 25px;
+}
+
 .pointer {
   cursor: pointer;
 }
