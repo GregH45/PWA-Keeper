@@ -69,7 +69,7 @@
     '/js/vue.js',
     '/js/materialize.js',
     '/js/app.js',
-    '/js/service-worker.js',
+    '/service-worker.js',
     '/css/materialize.min.css',
     '/css/app.css',
     '/fonts/MaterialIcons-Regular.eot',
