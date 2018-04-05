@@ -84,10 +84,10 @@
       <div class="padding">
         <button class="waves-effect waves-light btn" v-on:click="saveBtn">Save</button>
         <button class="waves-effect waves-light btn" v-on:click="updateBtn" v-if="id >= 0">Update</button>
-        <button class="waves-effect waves-light red darken-4 btn right" v-on:click="resetBtn" v-if="title && contents.length > 0">Reset</button>  
+        <a href="/detailled.html" class="waves-effect waves-light red darken-4 btn right" v-if="title && contents.length > 0">Reset</a>  
       </div>
       <todo-list v-bind:title="title" v-bind:contents="contents" :title.sync="title"></todo-list>
-      <div class="fixed-action-btn left">
+      <div class="fixed-action-btn left" v-if="id >= 0">
         <button class="btn-floating btn-large red" v-on:click="listBefore">
           <i class="large material-icons">navigate_before</i>
         </button>

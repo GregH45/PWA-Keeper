@@ -32,11 +32,6 @@ window.addEventListener('load', function() {
           });
         }
       },
-      resetBtn: function() {
-        this.id = -1;
-        this.title = '';
-        this.contents = [];
-      },
       listBefore: function() {
         var that = this;
         DatabaseORM.getPrevious(this.id, function(result) {
@@ -78,17 +73,6 @@ window.addEventListener('load', function() {
     })
   }
 
-  // No ID parameter
-  else {
-    // Retrieve last list
-    DatabaseORM.getLastList(function(list) {
-      if (list) {
-        app.id = list.id;
-        app.title = list.title;
-        app.contents = list.contents;
-      }
-    });
-  }
 
 
 });
