@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <!-- Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="theme-color" content="#68cfd0">
+    <title>Keeper</title>
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" type="text/css" href="/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/app.css">
+
+    <!-- Javascript -->
+    <script type="text/javascript" src="/js/vue.js"></script>
+    <script type="text/javascript" src="/js/materialize.js"></script>
+    <script type="text/javascript" src="/js/database.js"></script>
+    <script type="text/javascript" src="/js/components.js"></script>
+    <script type="text/javascript" src="/js/global.js"></script>
+    
+    <!-- Header -->
+    <nav class="teal accent-3">
+      <div class="nav-wrapper">
+        <a href="/index.html" class="brand-logo grey-text text-darken-4">Keeper</a>
+      </div>
+    </nav>
+
+    <!-- Index Definition -->
+    <div id="index" class="padding">
+       <ul>
+            <li v-for="elt in contents" class="min-padding">
+              {{ elt.title }}
+            </li>
+    </div>
+
+
+    <!-- Index Script -->
+    <script type="text/javascript" src="/js/index.js"></script>
+
+  </body>
+</html>
