@@ -46,3 +46,8 @@ body {
   /* Support for IE. */
   font-feature-settings: 'liga';
 }
+
+
+#app {
+  margin-bottom: 50px;
+}

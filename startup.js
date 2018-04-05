@@ -10,13 +10,16 @@ const AppConfig = {
 const express = require('express'),
       app     = express(),
       fs      = require('fs'),
-      https   = require('https');
+      https   = require('https'),
+      http    = require('http');
 
-let server = https.createServer({
-    key:  fs.readFileSync(AppConfig.Keys.KEY),
-    cert: fs.readFileSync(AppConfig.Keys.CRT),
-    ca:   fs.readFileSync(AppConfig.Keys.CSR)
-  }, app);
+var httpsServer = https.createServer({
+                    key:  fs.readFileSync(AppConfig.Keys.KEY),
+                    cert: fs.readFileSync(AppConfig.Keys.CRT),
+                    ca:   fs.readFileSync(AppConfig.Keys.CSR)
+                  }, app);
+
+var httpServer = http.createServer(app);
 
 var listeningPort;
 try {
@@ -26,6 +29,11 @@ try {
 }
 
 app.use(express.static('www'));
-server.listen(listeningPort, function() {
-  console.log('WebServer is listening on port ' + listeningPort);
+
+app.listen((listeningPort+1), function() {
+  console.log('HTTPS Server listening on port ' + (listeningPort+1));
+});
+
+httpServer.listen(listeningPort, function() {
+  console.log('HTTP Server listening on port ' + listeningPort);
 });

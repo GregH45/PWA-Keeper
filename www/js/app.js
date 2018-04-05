@@ -46,6 +46,28 @@ window.addEventListener('load', function() {
       resetBtn: function() {
         this.title = '';
         this.contents = [];
+      },
+      listBefore: function() {
+        if (this.id > 0) {
+          var that = this;
+          DatabaseORM.get((this.id-1), function(result) {
+            that.id = result.id;
+            that.title = result.title;
+            that.contents = result.contents;
+          })
+        }
+      },
+      listNext: function() {
+        var that = this;
+        DatabaseORM.getAllLists(function(lists) {
+          if (that.id < lists.length) {
+            DatabaseORM.get((that.id+1), function(result) {
+              that.id = result.id;
+              that.title = result.title;
+              that.contents = result.contents;
+            });
+          }
+        });
       }
     }
   });

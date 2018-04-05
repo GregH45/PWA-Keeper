@@ -120,3 +120,41 @@ ORM.prototype.getLastList = function(fn) {
     }
   })
 };
+
+ORM.prototype.get = function(id, fn) {
+  if (this.db) {
+    var transaction = this.db.transaction(["List"]),
+        objectStore = transaction.objectStore("List"),
+        request = objectStore.get(id);
+
+        
+    request.onerror = function(err) {
+      console.error('Request Error');
+    };
+    
+    request.onsuccess = function() {
+      var result = request.result;
+
+      result.contents = JSON.parse(result.contents);
+      
+      if (fn) {
+        fn(result);
+      }
+    };
+  } else {
+    var that = this;
+    setTimeout(function() {
+      that.getAllLists(fn);
+    }, 200);
+  }
+};
+
+ORM.prototype.getLastList = function(fn) {
+  this.getAllLists(function(lists) {
+    if (lists && lists.length > 0) {
+      fn(lists[lists.length-1]);
+    } else {
+      fn(false);
+    }
+  })
+};
