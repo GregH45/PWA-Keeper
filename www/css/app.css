@@ -18,6 +18,10 @@ body {
   padding: 2em;
 }
 
+.min-padding {
+  padding: .7em;
+}
+
 .colored {
   color: black;
 }
