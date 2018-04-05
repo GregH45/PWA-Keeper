@@ -1,6 +1,6 @@
 {
-  "short_name": "keeper",
-  "name": "Keeper",
+  "short_name": "Keeper",
+  "name": "ServiceWorker for Keeper Application",
   "theme_color": "#00bfa5",
   "background_color": "#F5F5F5",
   "display": "standalone",

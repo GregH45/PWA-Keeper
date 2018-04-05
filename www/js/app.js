@@ -4,7 +4,7 @@ window.onload = function() {
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker
       .register('/js/service-worker.js')
-      .then(function() {
+      .then(function(e) {
         console.log('Service Worker is OK');
       })
       .catch(function(e) {
@@ -22,7 +22,8 @@ window.onload = function() {
         var title = this.$props.elt.value,
             checked = e.target.checked;
 
-        console.log(title, checked)
+        this.$props.elt.checked = checked;
+        console.log(title, checked);
       }
     }
   });
