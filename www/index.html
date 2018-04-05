@@ -34,20 +34,19 @@
 
     <!-- Index Definition -->
     <div id="index" class="padding">
-    <a v-bind:href="'detailled.html'"> Add </a>
-      <ul>
-        <li v-for="elt in lists" class="min-padding">
-          <div class="card">
-            <div class="card-content">
-              <button class="btn-floating btn-large red" v-on:click="deleteList" >
-                <i class="small material-icons" :id="elt.id">delete</i>
-              </button>
+      <div class="collection">
+        <a href="detailled.html" class="collection-item">
+          Créer une nouvelle liste
+          <i class="material-icons right pointer">add</i>
+        </a>
+      </div>
+      <div class="collection">
+        <a v-for="elt in lists" v-bind:href="'detailled.html?id=' + elt.id" class="collection-item">
+          {{ elt.title }}
+          <i class="material-icons right pointer" v-on:click="deleteList" :id="elt.id">delete</i>
+        </a>
+      </div>
 
-              <a v-bind:href="'detailled.html?id='+ elt.id"> {{ elt.title }}</a>
-            </div>
-          </div>
-        </li>
-      </ul>
     </div>
 
 

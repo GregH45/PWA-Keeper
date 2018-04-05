@@ -18,6 +18,10 @@ body {
   padding: 2em;
 }
 
+.pointer {
+  cursor: pointer;
+}
+
 .min-padding {
   padding: .7em;
 }

@@ -7,9 +7,8 @@ window.addEventListener('load', function() {
     	},
     	methods: {
     		deleteList: function(e) {
-    			console.log(e.target.id);
+                e.preventDefault();
     			DatabaseORM.deleteList(e.target.id, function(evt) {
-    				console.log("deleted");
     				DatabaseORM.getAllLists(function(lists) {
     					home.lists = lists;
   					});

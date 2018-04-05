@@ -45,7 +45,7 @@
             <li>
               <form method="POST" action="#" v-on:submit.prevent="saveNewItem">
                 <div class="input-field">
-                  <i class="material-icons prefix" v-on:click="saveNewItem">add</i>
+                  <i class="material-icons prefix pointer" v-on:click="saveNewItem">add</i>
                   <input id="in_new_element" type="text" class="validate" autocomplete="off">
                   <label for="in_new_element">Ajouter un élément</label>
                 </div>
@@ -74,7 +74,7 @@
     <!-- Header -->
     <nav class="teal accent-3">
       <div class="nav-wrapper valign-wrapper">
-        <a href="/" class="material-icons left min-padding">arrow_back</a>
+        <a href="/" class="material-icons left min-padding pointer">arrow_back</a>
         <span class="brand-logo grey-text text-darken-4">Keeper</span>
       </div>
     </nav>

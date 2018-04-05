@@ -16,7 +16,6 @@ window.addEventListener('load', function() {
             console.error(result);
           } else {
             that.id = result;
-
             M.toast({ html: 'List saved!' });
           }
         });
@@ -25,7 +24,6 @@ window.addEventListener('load', function() {
         if (this.id >= 0) {
           DatabaseORM.update(this.id, this.title, this.contents, function(evt) {
             if (evt && evt.type === 'success') {
-              console.log('Update succeed');
               M.toast({ html: 'List updated!' });
             } else {
               console.error('Update failed');

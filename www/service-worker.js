@@ -68,8 +68,8 @@
   // Liste des fichiers à mettre en cache
   CACHE_FILES: [
     '/',
-    '/index.html',
     '/detailled.html',
+    '/index.html',
     '/manifest.json',
     '/service-worker.js',
     '/js/components.js',

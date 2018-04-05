@@ -35,7 +35,7 @@ app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname + '/www/index.html'));
 });
 
-app.listen((listeningPort+1), function() {
+httpsServer.listen((listeningPort+1), function() {
   console.log('HTTPS Server listening on port ' + (listeningPort+1));
 });
 
