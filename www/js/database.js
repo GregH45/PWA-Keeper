@@ -28,19 +28,58 @@ function ORM() {
 
 }
 
-ORM.prototype.insertList = function(title, contents) {
+ORM.prototype.insertList = function(title, contents, fn) {
   var tx = this.db.transaction(["List"], "readwrite"),
       store = tx.objectStore("List");
 
-  tx.oncomplete = function(event) {
-    console.log("All done!");
+  tx.oncomplete = function() {
+    if (fn) {
+      fn(false);
+    }
   };
 
   tx.onerror = function(error) {
-    console.error(error)
+    if (fn) {
+      fn(error);
+    }
   };
 
-  store.put({title: title, contents: JSON.stringify(contents) });
+  store.put({ title: title, contents: JSON.stringify(contents) });
+};
+
+ORM.prototype.update = function(id, title, contents, fn) {
+  if (this.db) {
+    var store = this.db.transaction(["List"], "readwrite").objectStore("List"),
+        request = store.get(id);
+
+    request.onerror = function(err) {
+      if (fn) {
+        fn(err);
+      }
+    };
+
+    request.onsuccess = function(e) {
+      var data = request.result;
+      
+      // On met à jour ce(s) valeur(s) dans l'objet
+      data.title = title;
+      data.contents = JSON.stringify(contents);
+
+      // Et on remet cet objet à jour dans la base
+      var requestUpdate = store.put(data);
+
+      requestUpdate.onerror = function(err) {
+        if (fn) {
+          fn(err);
+        }
+      };
+      requestUpdate.onsuccess = function(e) {
+        if (fn) {
+          fn(e);
+        }
+      };
+    };
+  }
 };
 
 ORM.prototype.getAllLists = function(fn) {
