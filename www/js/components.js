@@ -4,9 +4,6 @@ window.addEventListener('load', function() {
   Vue.component('item', {
     template: '#item',
     props: [ 'elt' ],
-    updated: function() {
-      console.log('Item updated');
-    },
     methods: {
       getItem: function() {
         return {
@@ -34,9 +31,6 @@ window.addEventListener('load', function() {
           contents: this.contents
         }
       };
-    },
-    updated: function() {
-      console.log('List Updated');
     },
     methods: {
       updateTitle: function(elt) {

@@ -22,8 +22,6 @@
 
   // Offline Response
   self.addEventListener('fetch', function(e) {
-    console.log(e.request.url);
-
     e.respondWith(
       caches
         .match(e.request)
