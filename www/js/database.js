@@ -133,11 +133,12 @@ ORM.prototype.get = function(id, fn) {
   if (this.db) {
     var transaction = this.db.transaction(["List"]),
         objectStore = transaction.objectStore("List"),
-        request = objectStore.get(id);
-
+        request = objectStore.get(parseInt(id));
         
     request.onerror = function(err) {
-      console.error('Request Error');
+      if (fn) {
+        fn(false);
+      }
     };
     
     request.onsuccess = function() {
@@ -149,6 +150,11 @@ ORM.prototype.get = function(id, fn) {
         fn(result);
       }
     };
+  } else {
+    var that = this;
+    setTimeout(function() {
+      that.get(id, fn);
+    }, 200);
   }
 };
 
