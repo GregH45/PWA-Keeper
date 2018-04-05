@@ -11,7 +11,8 @@ const express = require('express'),
       app     = express(),
       fs      = require('fs'),
       https   = require('https'),
-      http    = require('http');
+      http    = require('http'),
+      path    = require("path");
 
 var httpsServer = https.createServer({
                     key:  fs.readFileSync(AppConfig.Keys.KEY),
@@ -29,6 +30,10 @@ try {
 }
 
 app.use(express.static('www'));
+
+app.get('/', function(req, res) {
+  res.sendFile(path.join(__dirname + '/www/index.html'));
+});
 
 app.listen((listeningPort+1), function() {
   console.log('HTTPS Server listening on port ' + (listeningPort+1));
