@@ -10,6 +10,9 @@ window.addEventListener('load', function() {
     			console.log(e.target.id);
     			DatabaseORM.deleteList(e.target.id, function(evt) {
     				console.log("deleted");
+    				DatabaseORM.getAllLists(function(lists) {
+    					home.lists = lists;
+  					});
     			});
     		}
     	}
