@@ -22,14 +22,18 @@
 
   // Offline Response
   self.addEventListener('fetch', function(e) {
+    var req = e.request;
+
+    req.url = req.url.split('?')[0];
+
     e.respondWith(
       caches
-        .match(e.request)
+        .match(req)
         .then(function(res) {
           return res || fetchAndCache(e.request);
         })
         .catch(function(err) {
-          console.error('Error to rend ' + e.request.url);
+          console.error('Error to rend ' + req.url);
         })
     );
   });
@@ -40,10 +44,15 @@
         if (!response.ok) {
           throw Error(response.statusText);
         }
-        return caches.open(CACHE_NAME)
+
+        return caches
+          .open(Config.CACHE_NAME)
           .then(function(cache) {
             cache.put(url, response.clone());
             return response;
+          })
+          .catch(function(err) {
+            console.error(err);
           });
       })
       .catch(function(error) {
