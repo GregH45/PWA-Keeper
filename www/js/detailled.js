@@ -10,12 +10,14 @@ window.addEventListener('load', function() {
     },
     methods: {
       saveBtn: function() {
-        DatabaseORM.insertList(this.title, this.contents, function(err) {
-          if (!err) {
-            console.log('Insertion finished');
-            M.toast({ html: 'List saved!' });
+        var that = this;
+        DatabaseORM.insertList(this.title, this.contents, function(result) {
+          if (result instanceof Object) {
+            console.error(result);
           } else {
-            console.error(err);
+            that.id = result;
+
+            M.toast({ html: 'List saved!' });
           }
         });
       },
