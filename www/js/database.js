@@ -27,7 +27,6 @@ function ORM() {
 
   open.onsuccess = function() {
     that.db = open.result;
-    console.log('Database success');
   };
 
   open.onerror = function(err) {

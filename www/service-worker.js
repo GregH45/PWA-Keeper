@@ -61,13 +61,14 @@
   
   // Liste des fichiers à mettre en cache
   CACHE_FILES: [
-    '.',
-    '/index.html',
+    '/',
+    '/detailled.html',
     '/service-worker.js',
     '/manifest.json',
-    '/js/app.js',
     '/js/components.js',
     '/js/database.js',
+    '/js/detailled.js',
+    '/js/global.js',
     '/js/materialize.js',
     '/js/vue.js',
     '/css/materialize.min.css',
