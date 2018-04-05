@@ -53,6 +53,9 @@ window.addEventListener('load', function() {
           return id !== index;
         });
         //this.updateBtn();
+      },
+      updateTitle: function(title) {
+        this.title = title;
       }
     }
   });
