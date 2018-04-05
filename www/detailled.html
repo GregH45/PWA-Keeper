@@ -83,8 +83,8 @@
     <div id="app" class="padding">
       <div class="padding">
         <button class="waves-effect waves-light btn" v-on:click="saveBtn">Save</button>
-        <button class="waves-effect waves-light btn" v-on:click="updateBtn">Update</button>
-        <button class="waves-effect waves-light red darken-4 btn right" v-on:click="resetBtn">Reset</button>  
+        <button class="waves-effect waves-light btn" v-on:click="updateBtn" v-if="id >= 0">Update</button>
+        <button class="waves-effect waves-light red darken-4 btn right" v-on:click="resetBtn" v-if="title && contents.length > 0">Reset</button>  
       </div>
       <todo-list v-bind:title="title" v-bind:contents="contents" :title.sync="title"></todo-list>
       <div class="fixed-action-btn left">

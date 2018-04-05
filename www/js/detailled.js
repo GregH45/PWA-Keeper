@@ -33,6 +33,7 @@ window.addEventListener('load', function() {
         }
       },
       resetBtn: function() {
+        this.id = -1;
         this.title = '';
         this.contents = [];
       },
@@ -79,7 +80,6 @@ window.addEventListener('load', function() {
 
   // No ID parameter
   else {
-    console.log('here')
     // Retrieve last list
     DatabaseORM.getLastList(function(list) {
       if (list) {
