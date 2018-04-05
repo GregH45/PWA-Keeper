@@ -28,13 +28,33 @@
       caches
         .match(e.request)
         .then(function(res) {
-          return res || fetch(e.request);
+          return res || fetchAndCache(e.request);
         })
         .catch(function(err) {
           console.error('Error to rend ' + e.request.url);
         })
     );
   });
+
+  function fetchAndCache(url) {
+    console.log("heyhey")
+    return fetch(url)
+      .then(function(response) {
+        // Check if we received a valid response
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+        return caches.open(CACHE_NAME)
+        .then(function(cache) {
+          cache.put(url, response.clone());
+          return response;
+        });
+      })
+      .catch(function(error) {
+        console.log('Request failed:', error);
+        // You could return a custom offline 404 page here
+      });
+  }
 
 })({
 
@@ -43,7 +63,7 @@
   
   // Liste des fichiers à mettre en cache
   CACHE_FILES: [
-    '/',
+    '.',
     '/index.html',
     '/manifest.json',
     '/js/vue.js',

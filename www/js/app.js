@@ -3,9 +3,9 @@ window.onload = function() {
   // Vérification & Installation du ServiceWorker
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker
-      .register('/js/service-worker.js')
+      .register('/service-worker.js')
       .then(function(e) {
-        console.log('Service Worker is OK');
+        console.log('Service Worker is OK', e);
       })
       .catch(function(e) {
         console.error(e);
