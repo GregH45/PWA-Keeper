@@ -11,7 +11,7 @@
           return cache.addAll(Config.CACHE_FILES);
         })
         .catch(function(err) {
-          console.error('Error to install the application cache');
+          console.error('Error to install the application cache', err);
         })
     );
   });
