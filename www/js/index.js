@@ -1,14 +1,13 @@
 window.addEventListener('load', function() {
 	
-	var home = new Vue(
+	var home = new Vue({
 		el: '#index',
 		data: {
-	        contents: []
-    	},
-
+	        lists: []
+    	}
 	});
 
 	DatabaseORM.getAllLists(function(lists) {
-    	home.contents = lists;
+    	home.lists = lists;
   	});
 });

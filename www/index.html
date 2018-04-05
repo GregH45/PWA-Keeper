@@ -21,6 +21,9 @@
     <script type="text/javascript" src="/js/database.js"></script>
     <script type="text/javascript" src="/js/components.js"></script>
     <script type="text/javascript" src="/js/global.js"></script>
+  
+  </head>
+  <body>
     
     <!-- Header -->
     <nav class="teal accent-3">
@@ -32,9 +35,10 @@
     <!-- Index Definition -->
     <div id="index" class="padding">
        <ul>
-            <li v-for="elt in contents" class="min-padding">
-              {{ elt.title }}
+            <li v-for="elt in lists" class="min-padding">
+              <a v-bind:href="'detailled.html?id='+ elt.id"> {{ elt.title }}</a>
             </li>
+          </ul>
     </div>
 
 
