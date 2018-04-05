@@ -12,6 +12,7 @@ window.onload = function() {
       });
   }
 
+  
 
   // Définition des composants
   Vue.component('item', {
@@ -61,5 +62,7 @@ window.onload = function() {
   var app = new Vue({
     el: '#app'
   });
+
+  console.log(app);
 
 };
