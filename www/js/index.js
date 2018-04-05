@@ -4,7 +4,16 @@ window.addEventListener('load', function() {
 		el: '#index',
 		data: {
 	        lists: []
+    	},
+    	methods: {
+    		deleteList: function(e) {
+    			console.log(e.target.id);
+    			DatabaseORM.deleteList(e.target.id, function(evt) {
+    				console.log("deleted");
+    			});
+    		}
     	}
+
 	});
 
 	DatabaseORM.getAllLists(function(lists) {

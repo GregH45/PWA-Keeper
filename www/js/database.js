@@ -243,3 +243,32 @@ ORM.prototype.getLastList = function(fn) {
     }
   })
 };
+
+ORM.prototype.deleteList = function(id, fn) {
+  if (this.db) {
+    var transaction = this.db.transaction(["List"]),
+        objectStore = transaction.objectStore("List"),
+        request = objectStore.delete(parseInt(id));
+        
+    request.onerror = function(err) {
+      if (fn) {
+        fn(false);
+      }
+    };
+    
+    request.onsuccess = function() {
+      var result = request.result;
+
+      result.contents = JSON.parse("{success: true}");
+      
+      if (fn) {
+        fn(result);
+      }
+    };
+  } else {
+    var that = this;
+    setTimeout(function() {
+      that.get(id, fn);
+    }, 200);
+  }
+};

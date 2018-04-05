@@ -51,7 +51,6 @@ window.addEventListener('load', function() {
     }
   });
 
-
   // Search ID url parameter
   var urlQueries = window.location.search.substr(1, window.location.search.length).split('&'),
       searchId = urlQueries.filter(function(elt) {
@@ -72,7 +71,6 @@ window.addEventListener('load', function() {
       app.contents = list.contents;
     })
   }
-
 
 
 });
