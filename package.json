@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "main": "startup.js",
   "scripts": {
-    "serve": "node startup.js"
+    "serve": "node startup.js $npm_package_config_listen_port"
+  },
+  "config": {
+    "listen_port": 5000
   },
   "dependencies": {
     "express": "^4.16.3"

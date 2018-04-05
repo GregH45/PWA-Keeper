@@ -11,7 +11,7 @@ Après cette étape il suffit de lancer le serveur
 ```
 npm run serve
 ```
-Cette dernière créée une instance de serveur web qui écoute sur le port 5000.
+Cette dernière créée une instance de serveur web qui écoute sur le port 5000. Il est possible de changer ce dernier en modifiant dans le package.json, la variable **listen_port**
 
 ## Accès à l'application
 Une fois les dépendances installées et le serveur lancé, il suffit d'accéder à l'adresse **http://localhost:5000/index.html**
