@@ -35,10 +35,8 @@
   });
 
   function fetchAndCache(url) {
-    console.log("heyhey")
     return fetch(url)
       .then(function(response) {
-        // Check if we received a valid response
         if (!response.ok) {
           throw Error(response.statusText);
         }
@@ -50,7 +48,6 @@
       })
       .catch(function(error) {
         console.log('Request failed:', error);
-        // You could return a custom offline 404 page here
       });
   }
 
