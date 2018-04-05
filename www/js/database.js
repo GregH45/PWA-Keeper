@@ -246,7 +246,7 @@ ORM.prototype.getLastList = function(fn) {
 
 ORM.prototype.deleteList = function(id, fn) {
   if (this.db) {
-    var transaction = this.db.transaction(["List"]),
+    var transaction = this.db.transaction(["List"], "readwrite"),
         objectStore = transaction.objectStore("List"),
         request = objectStore.delete(parseInt(id));
         
@@ -259,7 +259,7 @@ ORM.prototype.deleteList = function(id, fn) {
     request.onsuccess = function() {
       var result = request.result;
 
-      result.contents = JSON.parse("{success: true}");
+      // result.contents = JSON.parse(result.contents);
       
       if (fn) {
         fn(result);
