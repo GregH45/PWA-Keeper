@@ -73,8 +73,9 @@
 
     <!-- Header -->
     <nav class="teal accent-3">
-      <div class="nav-wrapper">
-        <a href="/index.html" class="brand-logo grey-text text-darken-4">Keeper</a>
+      <div class="nav-wrapper valign-wrapper">
+        <a href="/" class="material-icons left min-padding">arrow_back</a>
+        <span class="brand-logo grey-text text-darken-4">Keeper</span>
       </div>
     </nav>
 
@@ -82,8 +83,8 @@
     <div id="app" class="padding">
       <div class="padding">
         <button class="waves-effect waves-light btn" v-on:click="saveBtn">Save</button>
-        <button class="waves-effect waves-light btn" v-on:click="updateBtn">Update</button>
-        <button class="waves-effect waves-light red darken-4 btn right" v-on:click="resetBtn">Reset</button>  
+        <button class="waves-effect waves-light btn" v-on:click="updateBtn" v-if="id >= 0">Update</button>
+        <button class="waves-effect waves-light red darken-4 btn right" v-on:click="resetBtn" v-if="title && contents.length > 0">Reset</button>  
       </div>
       <todo-list v-bind:title="title" v-bind:contents="contents" :title.sync="title"></todo-list>
       <div class="fixed-action-btn left">

@@ -12,6 +12,10 @@ function findIdInList(id, arr) {
 }
 
 function ORM() {
+
+  if (!indexedDB) {
+    alert('No Database System');
+  }
   
   var open = indexedDB.open("Keeper", 1);
   var that = this;
