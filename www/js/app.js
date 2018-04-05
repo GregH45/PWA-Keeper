@@ -26,6 +26,7 @@ window.addEventListener('load', function() {
         DatabaseORM.insertList(this.title, this.contents, function(err) {
           if (!err) {
             console.log('Insertion finished');
+            M.toast({ html: 'List saved!' });
           } else {
             console.error(err);
           }
@@ -36,6 +37,7 @@ window.addEventListener('load', function() {
           DatabaseORM.update(this.id, this.title, this.contents, function(evt) {
             if (evt && evt.type === 'success') {
               console.log('Update succeed');
+              M.toast({ html: 'List updated!' });
             } else {
               console.error('Update failed');
               console.error(evt);
@@ -48,25 +50,19 @@ window.addEventListener('load', function() {
         this.contents = [];
       },
       listBefore: function() {
-        if (this.id > 0) {
-          var that = this;
-          DatabaseORM.get((this.id-1), function(result) {
-            that.id = result.id;
-            that.title = result.title;
-            that.contents = result.contents;
-          })
-        }
+        var that = this;
+        DatabaseORM.getPrevious(this.id, function(result) {
+          that.id = result.id;
+          that.title = result.title;
+          that.contents = result.contents;
+        });
       },
       listNext: function() {
         var that = this;
-        DatabaseORM.getAllLists(function(lists) {
-          if (that.id < lists.length) {
-            DatabaseORM.get((that.id+1), function(result) {
-              that.id = result.id;
-              that.title = result.title;
-              that.contents = result.contents;
-            });
-          }
+        DatabaseORM.getNext(this.id, function(result) {
+          that.id = result.id;
+          that.title = result.title;
+          that.contents = result.contents;
         });
       }
     }

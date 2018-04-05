@@ -1,6 +1,15 @@
 var indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB || window.shimIndexedDB;
 var DatabaseORM = new ORM();
 
+function findIdInList(id, arr) {
+  for (var i=0; i<arr.length; i++) {
+    if (arr[i].id === id) {
+      return i;
+    }
+  }
+
+  return -1;
+}
 
 function ORM() {
   
@@ -141,11 +150,78 @@ ORM.prototype.get = function(id, fn) {
         fn(result);
       }
     };
-  } else {
+  }
+};
+
+ORM.prototype.getPrevious = function(id, fn) {
+  if (this.db) {
     var that = this;
-    setTimeout(function() {
-      that.getAllLists(fn);
-    }, 200);
+
+    this.getAllLists(function(lists) {
+      if (lists) {
+        var arrId = findIdInList(id, lists);
+
+        if (arrId > 0) {
+          var transaction = that.db.transaction(["List"]),
+              objectStore = transaction.objectStore("List"),
+              request = objectStore.get(lists[(arrId-1)].id);
+
+          request.onerror = function(err) {
+            console.error('Request Error');
+          };
+          
+          request.onsuccess = function() {
+            var result = request.result;
+
+            if (result) {
+              result.contents = JSON.parse(result.contents);
+              
+              if (fn) {
+                fn(result);
+              }
+            } else {
+              fn(false);
+            }
+          };
+        } 
+      }
+    });
+  }
+};
+
+ORM.prototype.getNext = function(id, fn) {
+  if (this.db) {
+    var that = this;
+
+    this.getAllLists(function(lists) {
+      if (lists) {
+        var arrId = findIdInList(id, lists);
+
+        if (arrId < (lists.length-1)) {
+          var transaction = that.db.transaction(["List"]),
+              objectStore = transaction.objectStore("List"),
+              request = objectStore.get(lists[(arrId+1)].id);
+
+          request.onerror = function(err) {
+            console.error('Request Error');
+          };
+          
+          request.onsuccess = function() {
+            var result = request.result;
+
+            if (result) {
+              result.contents = JSON.parse(result.contents);
+              
+              if (fn) {
+                fn(result);
+              }
+            } else {
+              fn(false);
+            }
+          };
+        } 
+      }
+    });
   }
 };
 

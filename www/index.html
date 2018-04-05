@@ -44,7 +44,7 @@
             <li>
               <form method="POST" action="#" v-on:submit.prevent="saveNewItem">
                 <div class="input-field">
-                  <i class="material-icons prefix">add</i>
+                  <i class="material-icons prefix" v-on:click="saveNewItem">add</i>
                   <input id="in_new_element" type="text" class="validate" autocomplete="off">
                   <label for="in_new_element">Ajouter un élément</label>
                 </div>
