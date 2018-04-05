@@ -56,36 +56,11 @@ window.addEventListener('load', function() {
   });
 
 
-  // Search ID url parameter
-  var urlQueries = window.location.search.substr(1, window.location.search.length).split('&'),
-      searchId = urlQueries.filter(function(elt) {
-        if (elt.split('=')[0] === 'id') {
-          return true;
-        }
-        return false;
-      });
-
-  // ID parameter exist
-  if (searchId.length > 0) {
-    var id = searchId[0].split('=')[1];
-
-    // Retrieve the list with the same id
-    DatabaseORM.get(id, function(list) {
-      app.id = list.id;
-      app.title = list.title;
-      app.contents = list.contents;
-    })
-  }
-
-  // No ID parameter
-  else {
-    // Retrieve last list
-    DatabaseORM.getLastList(function(list) {
-      app.id = list.id;
-      app.title = list.title;
-      app.contents = list.contents;
-    });
-  }
-
+  // Retrieve last list
+  DatabaseORM.getLastList(function(list) {
+    app.id = list.id;
+    app.title = list.title;
+    app.contents = list.contents;
+  });
 
 });
