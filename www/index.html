@@ -18,6 +18,7 @@
     <script type="text/javascript" src="/js/vue.js"></script>
     <script type="text/javascript" src="/js/materialize.js"></script>
     <script type="text/javascript" src="/js/database.js"></script>
+    <script type="text/javascript" src="/js/components.js"></script>
 
     <!-- Components Definition -->
     <!-- Item Component -->
@@ -33,11 +34,11 @@
       <div class="card">
         <div class="card-content">
           <div class="input-field card-title">
-            <input placeholder="Titre de la liste" id="in_title" type="text" v-on:change="updateTitle" v-model="title">
+            <input placeholder="Titre de la liste" id="in_title" type="text" v-on:change="updateTitle" v-bind:value="title">
           </div>
           <ul>
             <li v-for="elt in contents" class="padding">
-              <item v-bind:elt="elt"></item>
+              <item v-bind:elt="elt" :elt.sync="elt"></item>
             </li>
             <li>
               <form method="POST" action="#" v-on:submit.prevent="saveNewItem">
@@ -65,7 +66,11 @@
 
     <!-- Application Definition -->
     <div id="app" class="padding">
-      <todo-list></todo-list>
+      <todo-list v-bind:title="title" v-bind:contents="contents" :title.sync="title"></todo-list>
+      <div>
+        <button class="waves-effect waves-light btn" v-on:click="saveBtn">Save</button>
+        <button class="waves-effect waves-light btn" v-on:click="resetBtn">Reset</button>  
+      </div>
     </div>
 
 
