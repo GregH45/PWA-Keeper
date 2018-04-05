@@ -1,0 +1,11 @@
+{
+  "name": "keeper-server",
+  "version": "1.0.0",
+  "main": "startup.js",
+  "scripts": {
+    "serve": "node startup.js"
+  },
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
