@@ -18,10 +18,19 @@
   // Liste des fichiers à mettre en cache
   CACHE_FILES: [
     '/index.html',
+    '/manifest.json',
     '/js/vue.js',
+    '/js/materialize.js',
+    '/js/app.js',
     '/js/service-worker.js',
-    '/js/app.js'
+    '/css/materialize.min.css',
+    '/css/app.css',
+    '/fonts/MaterialIcons-Regular.eot',
+    '/fonts/MaterialIcons-Regular.svg',
+    '/fonts/MaterialIcons-Regular.woff2',
+    '/fonts/MaterialIcons-Regular.woff',
+    '/fonts/MaterialIcons-Regular.ttf',
+    '/fonts/MaterialIcons-Regular.ijmap'
   ]
 
 });
-
