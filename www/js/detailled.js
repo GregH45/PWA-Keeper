@@ -79,11 +79,14 @@ window.addEventListener('load', function() {
 
   // No ID parameter
   else {
+    console.log('here')
     // Retrieve last list
     DatabaseORM.getLastList(function(list) {
-      app.id = list.id;
-      app.title = list.title;
-      app.contents = list.contents;
+      if (list) {
+        app.id = list.id;
+        app.title = list.title;
+        app.contents = list.contents;
+      }
     });
   }
 
