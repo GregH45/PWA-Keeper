@@ -1,11 +1,11 @@
-window.onload = function() {
+window.addEventListener('load', function() {
 
   // Vérification & Installation du ServiceWorker
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker
       .register('/service-worker.js')
-      .then(function(e) {
-        console.log('Service Worker is OK', e);
+      .then(function() {
+        console.log('Service Worker is OK');
       })
       .catch(function(e) {
         console.error(e);
@@ -13,53 +13,32 @@ window.onload = function() {
   }
 
 
-  // Définition des composants
-  Vue.component('item', {
-    template: '#item',
-    props: [ 'elt' ],
-    methods: {
-      saveTick: function(e) {
-        var title = this.$props.elt.value,
-            checked = e.target.checked;
-
-        this.$props.elt.checked = checked;
-        console.log(title, checked);
-      }
-    }
-  });
-
-  Vue.component('todo-list', {
-    template: '#todoList',
-    data: function() {
-      return {
-        title: 'Liste de course',
-        contents: [{
-          checked: true,
-          value: 'Carotte'
-        }, {
-          value: 'Banane'
-        }]
-      }
-    },
-    methods: {
-      updateTitle: function() {
-        console.log(this.title);
-      },
-      saveNewItem: function() {
-        var elt = document.getElementById('in_new_element');
-
-        this.contents.push({
-          value: elt.value
-        });
-        elt.value = '';
-      }
-    }
-  });
-
-
   // Initialisation de la Vue
   var app = new Vue({
-    el: '#app'
+    el: '#app',
+    data: {
+      title: '',
+      contents: []
+    },
+    created: function() {
+      var that = this;
+      DatabaseORM.getLastList(function(list) {
+        that.title = list.title;
+        that.contents = list.contents;
+      })
+    },
+    updated: function() {
+      console.log('Parent Updated');
+    },
+    methods: {
+      saveBtn: function() {
+        DatabaseORM.insertList(this.title, this.contents);
+      },
+      resetBtn: function() {
+        this.title = '';
+        this.contents = [];
+      }
+    }
   });
 
-};
+});
