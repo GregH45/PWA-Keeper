@@ -77,6 +77,7 @@
     '/js/detailled.js',
     '/js/global.js',
     '/js/index.js',
+    '/js/jquery.js',
     '/js/materialize.js',
     '/js/vue.js',
     '/css/materialize.min.css',

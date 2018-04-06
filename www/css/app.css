@@ -63,3 +63,8 @@ body {
 #app {
   margin-bottom: 50px;
 }
+
+#list {
+  max-width: 600px;
+  margin: 0 auto;
+}
