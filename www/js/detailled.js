@@ -61,20 +61,12 @@ window.addEventListener('load', function() {
   });
 
   // Search ID url parameter
-  var urlQueries = window.location.search.substr(1, window.location.search.length).split('&'),
-      searchId = urlQueries.filter(function(elt) {
-        if (elt.split('=')[0] === 'id') {
-          return true;
-        }
-        return false;
-      });
+  var listId = sessionStorage.getItem('listId');
 
   // ID parameter exist
-  if (searchId.length > 0) {
-    var id = searchId[0].split('=')[1];
-
+  if (listId) {
     // Retrieve the list with the same id
-    DatabaseORM.get(id, function(list) {
+    DatabaseORM.get(listId, function(list) {
       app.id = list.id;
       app.title = list.title;
       app.contents = list.contents;

@@ -1,7 +1,11 @@
 # Keeper
 Keeper est un fork de Google Keep pour le cours d'algo web en APP5 à Polytech Paris Sud
 
-## Mise en route
+## Test depuis Firebase
+Cette application est disponibble sur Firebase à l'adress :
+https://keeper-4a3ea.firebaseapp.com
+
+## Mise en route (en local)
 Une fois dans le dossier du projet, il faut installer les dépendances du serveur web 
 ```
 npm install

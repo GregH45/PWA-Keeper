@@ -53,14 +53,14 @@
       </div>
 
       <div class="row">
-        <a v-for="elt in lists" v-bind:href="'detailled.html?id=' + elt.id" class="col s12 m6 l4 xl3 colored">
+        <div v-for="elt in lists" class="col s12 m6 l4 xl3 colored">
           <div class="card hoverable">
-            <div class="card-content">
+            <div class="card-content" :id="elt.id" v-on:click="goToDetailled">
               {{ elt.title }}
               <i class="material-icons right pointer" v-on:click="showConfirm" :id="elt.id">delete</i>
             </div>
           </div>
-        </a>
+        </div>
       </div>
 
     </div>

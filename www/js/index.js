@@ -24,6 +24,15 @@ window.addEventListener('load', function() {
                 e.preventDefault();
                 $('#modal1').modal('open');
                 SAVED_ID = e.target.id;
+            },
+            goToDetailled: function(e) {
+                if (e.target.id) {
+                    sessionStorage.setItem('listId', e.target.id);
+                } else {
+                    sessionStorage.setItem('listId', undefined);
+                }
+                
+                window.location.href = 'detailled.html';
             }
         }
 
