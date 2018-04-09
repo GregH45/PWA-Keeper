@@ -71,7 +71,7 @@
       <div class="padding">
         <button class="waves-effect waves-light btn" v-on:click="saveBtn">Save</button>
         <button class="waves-effect waves-light btn" v-on:click="updateBtn" v-if="id >= 0">Update</button>
-        <a href="/detailled.html" class="waves-effect waves-light red darken-4 btn right" v-if="title && contents.length > 0">Reset</a>  
+        <button class="waves-effect waves-light red darken-4 btn right" v-on:click="reset" v-if="title && contents.length > 0">Reset</button>  
       </div>
       <todo-list v-bind:title="title" v-bind:contents="contents" v-on:update-title="updateTitle" v-on:remove-item="remove"></todo-list>
       <div class="fixed-action-btn left" v-if="id >= 0">

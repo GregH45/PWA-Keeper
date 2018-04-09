@@ -56,6 +56,10 @@ window.addEventListener('load', function() {
       },
       updateTitle: function(title) {
         this.title = title;
+      },
+      reset: function() {
+        sessionStorage.removeItem('listId');
+        window.location.reload();
       }
     }
   });
